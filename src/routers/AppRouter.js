@@ -1,54 +1,64 @@
 import React, { useEffect, useState } from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import { login } from '../actions/auth';
-import { LoginScreen } from '../components/login/LoginScreen';
-import { RegisterScreen } from '../components/register/RegisterScreen';
-import { Videogame } from '../components/videogame/Videogame';
-import { firebase } from '../firebase/firebaseConfig'
+import { Home } from '../components/videogame/Home';
+// import { Home } from '../components/videogame/Home';
+import { firebase } from '../firebase/firebaseConfig';
+import { AuthRouter } from './AuthRouter';
+import { DashboardRoutes } from './DashboardRoutes';
+import { PrivateRoute } from './PrivateRoute';
+import { PublicRoute } from './PublicRoute';
 
 export const AppRouter = () => {
-    const dispatch = useDispatch();
+	const dispatch = useDispatch();
 
-    const [ checking, setChecking ] = useState(true);
-    const [ isLoggedIn, setIsLoggedIn ] = useState(false);
+	const [checking, setChecking] = useState(true);
+	const [isLoggedIn, setIsLoggedIn] = useState(false);
+    const {uid} = useSelector( state => state.auth);
+    console.log(uid);
 
+	useEffect(() => {
+		firebase.auth().onAuthStateChanged(async (user) => {
+			if (user?.uid) {
+				dispatch(login(user.uid, user.displayName));
+				setIsLoggedIn(true);
+				// dispatch( startLoadingNotes( user.uid ) );
+			} else {
+				setIsLoggedIn(false);
+			}
 
+			setChecking(false);
+		});
+	}, [dispatch, setChecking, setIsLoggedIn, uid]);
 
-    useEffect(() => {
-        
-        firebase.auth().onAuthStateChanged( async(user) => {
-
-            if ( user?.uid ) {
-                dispatch( login( user.uid, user.displayName ) );
-                setIsLoggedIn( true );
-                // dispatch( startLoadingNotes( user.uid ) );
-
-            } else {
-                setIsLoggedIn( false );
-            }
-
-            setChecking(false);
-
-        });
-        
-    }, [ dispatch, setChecking, setIsLoggedIn ])
-
-
-    if ( checking ) {
-        return (
-            <h1>Wait...</h1>
-        )
-    }
+	if (checking) {
+		return <h1>Wait...</h1>;
+	}
 	return (
 		<BrowserRouter>
 			<Routes>
-            {/* <Route path="login" element={<Login />} /> */}
-                <Route path='/login' element={<LoginScreen />} />
-                <Route path='/register' element={<RegisterScreen />} />
-                <Route path='/home' element={<Videogame />} />
-                <Route path='/*' element={<LoginScreen />} />
-            </Routes>
+				{/* <Route
+					path='/login'
+					element={
+						<PublicRoute>
+							<AuthRouter />
+						</PublicRoute>
+					}
+				/>
+
+				<Route
+					path='/*'
+					element={
+						<PrivateRoute>
+							<DashboardRoutes />
+						</PrivateRoute>
+					}
+				/> */}
+                <Route path='/home' isAuthenticated={isLoggedIn} element={<Home />} />
+                <Route path='/auth' isAuthenticated={isLoggedIn} element={<AuthRouter />} />
+				<Route path='/*' isAuthenticated={isLoggedIn} element={<AuthRouter />} />
+			</Routes>
 		</BrowserRouter>
 	);
 };

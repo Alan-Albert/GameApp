@@ -4,9 +4,9 @@ import { store } from './store/store';
 import { AppRouter } from './routers/AppRouter';
 
 export const GameApp = () => {
-  return (
-      <Provider store={ store }>
-            <AppRouter />
-        </Provider>
-  )
+	return (
+		<Provider store={store}>
+			<AppRouter />
+		</Provider>
+	);
 };
