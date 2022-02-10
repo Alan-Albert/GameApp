@@ -1,12 +1,13 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
 import { Navigate } from 'react-router-dom';
-import '../../data/games';
+
 import { games } from '../../data/games';
-import './home.css';
+import { GameGrid } from './GameGrid';
 import { Navbar } from './Navbar';
-import { Videogame } from './Videogame';
-// import { Navbar } from './Navbar';
+
+import '../../data/games';
+import './home.css';
 
 export const Home = () => {
 	const { uid } = useSelector((state) => state.auth);
@@ -15,17 +16,7 @@ export const Home = () => {
 	return uid ? (
 		<>
 			<Navbar />
-			<div className='game-container mt-3'>
-				<h1>Latest</h1>
-				<div className='card-container'>
-
-				{gamesFiltered.map((game, index) => {
-					// return <p key={index}> {game.name} {!game.cover ? '' : 
-					// <img src={game.cover.url} alt={game.name} />} </p>;
-					return <Videogame key={index} {...game} />;
-				})}
-				</div>
-			</div>
+			<GameGrid games={gamesFiltered}/>
 		</>
 	) : (
 		<Navigate to='login' />
