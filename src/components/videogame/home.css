@@ -1,13 +1,30 @@
 .game-container{
+    padding: 50px;
     background-color: white;
     width: 100vw;
     height: 92vh;
 }
 
 .text-profile {
-    color: #F0A202 !important;
+    color: #92C9B1 !important;
 }
 
 .navbar-brand {
     margin-left: 1rem;
+}
+
+.card-container {
+	display: grid;
+	grid-template-columns: repeat(5, 2fr);
+	grid-gap: 10px;
+	grid-auto-rows: minmax(200px, auto);
+}
+
+.game-card {
+	margin: 10px;
+}
+
+.genres{
+    color: #5D5179;
+    font-style: italic;
 }

@@ -5,6 +5,7 @@ import '../../data/games';
 import { games } from '../../data/games';
 import './home.css';
 import { Navbar } from './Navbar';
+import { Videogame } from './Videogame';
 // import { Navbar } from './Navbar';
 
 export const Home = () => {
@@ -14,12 +15,16 @@ export const Home = () => {
 	return uid ? (
 		<>
 			<Navbar />
-			<div className='container game-container mt-3'>
-				<h1>Home</h1>
+			<div className='game-container mt-3'>
+				<h1>Latest</h1>
+				<div className='card-container'>
+
 				{gamesFiltered.map((game, index) => {
-					return <p key={index}> {game.name} {!game.cover ? '' : 
-					<img src={game.cover.url} alt={game.name} />} </p>;
+					// return <p key={index}> {game.name} {!game.cover ? '' : 
+					// <img src={game.cover.url} alt={game.name} />} </p>;
+					return <Videogame key={index} {...game} />;
 				})}
+				</div>
 			</div>
 		</>
 	) : (
