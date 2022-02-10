@@ -3,13 +3,11 @@ import { useDispatch, useSelector } from 'react-redux';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import { login } from '../actions/auth';
 import { LoginScreen } from '../components/auth/LoginScreen';
-// import { RegisterScreen } from '../components/auth/RegisterScreen';
+import { RegisterScreen } from '../components/auth/RegisterScreen';
 import { Home } from '../components/videogame/Home';
 import { firebase } from '../firebase/firebaseConfig';
 import { PrivateRoute } from './PrivateRoute';
 import { PublicRoute } from './PublicRoute';
-// import { DashboardRoutes } from './DashboardRoutes';
-// import { PublicRoute } from './PublicRoute';
 
 export const AppRouter = () => {
 	const dispatch = useDispatch();
@@ -50,10 +48,9 @@ export const AppRouter = () => {
 	return (
         <BrowserRouter>
 			<Routes>
-                {/* <Route path='/login' element={<LoginScreen />} />
-                <Route path='/register' element={<RegisterScreen />} /> */}
 				<Route element={<PublicRoute isLogged={isLogged} />} >
                     <Route path='/login' element={<LoginScreen />} />
+                    <Route path='/register' element={<RegisterScreen />} />
                 </Route>
 				<Route element={<PrivateRoute isLogged={isLogged} />} >
                     <Route path='/home' element={<Home />} />
