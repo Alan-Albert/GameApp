@@ -2,14 +2,17 @@
 import { Button } from '@mui/material';
 import React from 'react';
 import { useDispatch } from 'react-redux';
-import { startLoginEmailPassword } from '../../actions/auth';
+import { startGoogleLogin, startLoginEmailPassword } from '../../actions/auth';
 import { useForm } from '../../hooks/useForm';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 import './login.css';
 
 export const LoginScreen = () => {
+
 	const dispatch = useDispatch();
+	const navigate = useNavigate();
+
 	const [formValues, handleInputChange] = useForm({
 		email: 'alanalbert@gmail.com',
 		password: '123456',
@@ -18,14 +21,15 @@ export const LoginScreen = () => {
 	const { email, password } = formValues;
 	const handleGoogleLogin = (e) => {
 		e.preventDefault();
-		console.log('googleSignIn');
+		dispatch( startGoogleLogin() );
 	};
 
 	const handleLogin = (e) => {
 		e.preventDefault();
-		console.log('SignIn');
-		console.log(formValues);
+		// console.log('SignIn');
+		// console.log(formValues);
 		dispatch(startLoginEmailPassword(email, password));
+		navigate("/home", {replace: true});
 	};
 
 	return (

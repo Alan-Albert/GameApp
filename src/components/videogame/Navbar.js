@@ -34,7 +34,7 @@ export const Navbar = () => {
 						}
 						to='/topRated'
 					>
-						Top Rated
+						TopRated
 					</NavLink>
 
 					<NavLink
@@ -54,7 +54,7 @@ export const Navbar = () => {
                         { name }
                     </span>
                     
-                    <NavLink to={<LoginScreen/>} className='nav-item' onClick={handleLogout}>Logout</NavLink>
+                    <NavLink to={<LoginScreen/>} className='nav-item nav-link' onClick={handleLogout}>Logout</NavLink>
                 </ul>
             </div>
 		</nav>
