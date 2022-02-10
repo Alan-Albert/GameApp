@@ -5,9 +5,12 @@ import CardMedia from '@mui/material/CardMedia';
 import Typography from '@mui/material/Typography';
 import { CardActionArea } from '@mui/material';
 
-export const Videogame = ({name, cover, summary, genres}) => {
+export const Videogame = ({id, name, cover, summary, genres}) => {
+  const handleGameClick = () => {
+    console.log(id);
+  }
   return (
-    <Card className='game-card' sx={{ maxWidth: 345 }}>
+    <Card className='game-card' sx={{ maxWidth: 345 }} onClick={handleGameClick}>
       <CardActionArea>
         <CardMedia
           component="img"

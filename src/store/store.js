@@ -10,7 +10,6 @@ const reducers = combineReducers({
     ui: uiReducer
 });
 
-
 export const store = createStore(
     reducers,
     composeEnhancers(

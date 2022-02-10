@@ -43,7 +43,7 @@ export const Navbar = () => {
 						}
 						to='/topRated'
 					>
-						Coming soon
+						ComingSoon
 					</NavLink>
 
 					<NavLink
