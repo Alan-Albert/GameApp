@@ -55,7 +55,7 @@ export const AppRouter = () => {
 				<Route element={<PrivateRoute isLogged={isLogged} />} >
                     <Route path='/home' element={<Home />} />
                 </Route>
-                <Route path='*' element={<LoginScreen />} />
+                <Route path='*' element={<Home />} />
 			</Routes>
 		</BrowserRouter>
 	);

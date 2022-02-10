@@ -36,6 +36,15 @@ export const Navbar = () => {
 					>
 						TopRated
 					</NavLink>
+					
+					<NavLink
+						className={({ isActive }) =>
+							'nav-item nav-link ' + (isActive ? 'active' : '')
+						}
+						to='/topRated'
+					>
+						Coming soon
+					</NavLink>
 
 					<NavLink
 						className={({ isActive }) =>

@@ -48,7 +48,7 @@ export const RegisterScreen = () => {
     }
 
 	return (
-		<>
+		<div className='fondo'>
 			<div className='container login-container animate__animated animate__fadeIn animate__faster'>
 				<div className='row'>
 					<div className='col-md-6 formulario'>
@@ -116,6 +116,6 @@ export const RegisterScreen = () => {
 					</div>
 				</div>
 			</div>
-		</>
+		</div>
 	);
 };
