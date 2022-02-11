@@ -1,5 +1,5 @@
 import React from 'react';
-import { Videogame } from './Videogame';
+import { GameCard } from './GameCard';
 
 export const GameGrid = ({ games }) => {
 	return (
@@ -9,7 +9,7 @@ export const GameGrid = ({ games }) => {
 				{games.map((game, index) => {
 					// return <p key={index}> {game.name} {!game.cover ? '' :
 					// <img src={game.cover.url} alt={game.name} />} </p>;
-					return <Videogame key={index} {...game} />;
+					return <GameCard key={index} {...game} />;
 				})}
 			</div>
 		</div>

@@ -4,6 +4,7 @@ import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import { login } from '../actions/auth';
 import { LoginScreen } from '../components/auth/LoginScreen';
 import { RegisterScreen } from '../components/auth/RegisterScreen';
+import { GameInfo } from '../components/videogame/GameInfo';
 import { Home } from '../components/videogame/Home';
 import { firebase } from '../firebase/firebaseConfig';
 import { PrivateRoute } from './PrivateRoute';
@@ -48,6 +49,7 @@ export const AppRouter = () => {
 				</Route>
 				<Route element={<PrivateRoute isLogged={isLogged} />}>
 					<Route path='/home' element={<Home />} />
+					<Route path='/game:id' element={<GameInfo />} />
 				</Route>
 				<Route path='*' element={<Home />} />
 			</Routes>

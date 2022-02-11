@@ -4,10 +4,13 @@ import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
 import Typography from '@mui/material/Typography';
 import { CardActionArea } from '@mui/material';
+import { useNavigate } from 'react-router-dom';
 
-export const Videogame = ({id, name, cover, summary, genres}) => {
+export const GameCard = ({id, name, cover, summary, genres}) => {
+  const nav = useNavigate();
   const handleGameClick = () => {
     console.log(id);
+    nav(`game:${id}`);
   }
   return (
     <Card className='game-card' sx={{ maxWidth: 345 }} onClick={handleGameClick}>

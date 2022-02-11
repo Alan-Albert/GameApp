@@ -1,32 +1,44 @@
 // import firebase  from "../firebase/firebaseConfig";
 import Swal from "sweetalert2";
 import { firebase, googleAuthProvider } from "../firebase/firebaseConfig";
+import { fetchSinToken } from "../helpers/fetch";
 import { types } from "../types/types";
 import { finishLoading, startLoading } from "./ui";
 
 export const startLoginEmailPassword = (email, password) => {
-    return (dispatch) => {
-
-        dispatch( startLoading() );
-        
+    return async(dispatch) => {
         
         firebase.auth().signInWithEmailAndPassword( email, password )
-            .then( ({ user }) => {
-                dispatch(login( user.uid, user.displayName ));
-
-                dispatch( finishLoading() );
-            })
-            .catch( e => {
-                console.log(e);
-                dispatch( finishLoading() );
-                Swal.fire('Error', e.message, 'error');
-            })
+        .then( async({ user }) => {
+            
+            const resp = await fetchSinToken( 'auth', { email, password }, 'POST' );
+            const body = await resp.json();
+            if( body.ok ) {
+                console.log('body ok');
+                localStorage.setItem('token', body.token );
+                localStorage.setItem('token-init-date', new Date().getTime() );
+            }
+            dispatch(login( user.uid, user.displayName ));
+        })
+        .catch( e => {
+            console.log(e);
+            dispatch( finishLoading() );
+            Swal.fire('Error', e.message, 'error');
+        })
+        
     }
 }
 
 export const startRegisterWithEmailPasswordName = ( email, password, name ) => {
-    return ( dispatch ) => {
-
+    return async( dispatch ) => {
+        const resp = await fetchSinToken( 'auth/new', { email, password, name }, 'POST' );
+        const body = await resp.json();
+        dispatch( startLoading() );
+        if( body.ok ) {
+            console.log('body ok');
+            localStorage.setItem('token', body.token );
+            localStorage.setItem('token-init-date', new Date().getTime() );
+        }
         firebase.auth().createUserWithEmailAndPassword( email, password )
             .then( async({ user }) => {
 
