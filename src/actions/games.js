@@ -8,6 +8,7 @@ export const getGames = () => {
                 
                 const resp = await fetchConToken( 'games' );
                 const body = await resp.json();
+                console.log(body);
                 const games = body.games;
                 dispatch( gamesLoaded( games ) );
     
