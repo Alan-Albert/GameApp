@@ -10,10 +10,11 @@ export const GameCard = ({id, name, cover, summary, genres}) => {
   const nav = useNavigate();
   
   const handleGameClick = () => {
+    // console.log(id);
     nav(`/game/${id}`);
   }
   return (
-    <Card className='game-card' sx={{ maxWidth: 345 }} onClick={handleGameClick}>
+    <Card className='game-card' sx={{ maxWidth: 345, height: 300 }} onClick={handleGameClick}>
       <CardActionArea>
         <CardMedia
           component="img"

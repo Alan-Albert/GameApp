@@ -5,67 +5,65 @@ import { startLogout } from '../../actions/auth';
 import { LoginScreen } from '../auth/LoginScreen';
 
 export const Navbar = () => {
-    const dispatch = useDispatch();
-    const {name} = useSelector( state => state.auth );
-    
+	const dispatch = useDispatch();
+	const { name } = useSelector((state) => state.auth);
+
 	const handleLogout = () => {
-        dispatch( startLogout() )
-    }
+		dispatch(startLogout());
+	};
 
 	return (
 		<nav className='navbar fixed-top navbar-expand-sm navbar-dark bg-dark'>
-			<Link className='navbar-brand' to='/'>
-				Home
-			</Link>
-			<div className='navbar-collapse'>
-				<div className='navbar-nav'>
-					<NavLink
-						className={({ isActive }) =>
-							'nav-item nav-link ' + (isActive ? 'active' : '')
-						}
-						to='/genres'
-					>
-						Genres
-					</NavLink>
+			<div className='container-fluid'>
+				<button
+					className='navbar-toggler'
+					type='button'
+					data-bs-toggle='collapse'
+					data-bs-target='#navbarTogglerDemo01'
+					aria-controls='navbarTogglerDemo01'
+					aria-expanded='false'
+					aria-label='Toggle navigation'
+				>
+					<span className='navbar-toggler-icon'></span>
+				</button>
+				<Link className='navbar-brand' to='/'>
+					Home
+				</Link>
+				<div className='' id='navbarTogglerDemo01'>
+					{/* <ul className='navbar-nav me-auto mb-2 mb-lg-0'>
+						<NavLink
+							className={({ isActive }) =>
+								'nav-item nav-link ' + (isActive ? 'active' : '')
+							}
+							to='/genres'
+						>
+							Genres
+						</NavLink>
 
-					<NavLink
-						className={({ isActive }) =>
-							'nav-item nav-link ' + (isActive ? 'active' : '')
-						}
-						to='/topRated'
-					>
-						TopRated
-					</NavLink>
-					
-					<NavLink
-						className={({ isActive }) =>
-							'nav-item nav-link ' + (isActive ? 'active' : '')
-						}
-						to='/coming'
-					>
-						ComingSoon
-					</NavLink>
+						<NavLink
+							className={({ isActive }) =>
+								'nav-item nav-link ' + (isActive ? 'active' : '')
+							}
+							to='/search'
+						>
+							Search
+						</NavLink>
+					</ul> */}
+					<div className='w-100 order-3 dual-collapse2 d-flex justify-content-end'>
+						<ul className='navbar-nav ml-auto'>
+							<span className='nav-item nav-link text-profile'>{name}</span>
 
-					<NavLink
-						className={({ isActive }) =>
-							'nav-item nav-link ' + (isActive ? 'active' : '')
-						}
-						to='/search'
-					>
-						Search
-					</NavLink>
+							<NavLink
+								to={<LoginScreen />}
+								className='nav-item nav-link'
+								onClick={handleLogout}
+							>
+								Logout
+							</NavLink>
+						</ul>
+					</div>
 				</div>
 			</div>
-            <div className="navbar-collapse collapse w-100 order-3 dual-collapse2 d-flex justify-content-end">
-                <ul className="navbar-nav ml-auto">
-
-                    <span className="nav-item nav-link text-profile">
-                        { name }
-                    </span>
-                    
-                    <NavLink to={<LoginScreen/>} className='nav-item nav-link' onClick={handleLogout}>Logout</NavLink>
-                </ul>
-            </div>
 		</nav>
 	);
 };

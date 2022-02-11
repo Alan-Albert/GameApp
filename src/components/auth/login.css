@@ -107,3 +107,8 @@ input:focus{
     display: flex;
     justify-content: center;
 }
+
+.link{
+    text-decoration: none;
+    color:#4F759B;
+}

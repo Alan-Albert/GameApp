@@ -26,8 +26,6 @@ export const LoginScreen = () => {
 
 	const handleLogin = (e) => {
 		e.preventDefault();
-		// console.log('SignIn');
-		// console.log(formValues);
 		dispatch(startLoginEmailPassword(email, password));
 		navigate("/home", {replace: true});
 	};

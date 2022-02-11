@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import { login } from '../actions/auth';
+import { getGames } from '../actions/games';
 import { LoginScreen } from '../components/auth/LoginScreen';
 import { RegisterScreen } from '../components/auth/RegisterScreen';
 import { GameInfo } from '../components/videogame/GameInfo';
@@ -28,6 +29,7 @@ export const AppRouter = () => {
 		firebase.auth().onAuthStateChanged(async (user) => {
 			if (user?.uid) {
 				dispatch(login(user.uid, user.displayName));
+				dispatch(getGames());
 				setIsLogged(true);
 			} else {
 				setIsLogged(false);

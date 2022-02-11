@@ -90,7 +90,7 @@ export const startRenew = () => {
             dispatch( login({
                 uid: body.uid,
                 name: body.name
-            }) )
+            }) );
         }
     }
 }
