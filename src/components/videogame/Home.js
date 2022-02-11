@@ -1,19 +1,24 @@
-import React from 'react';
-import { useSelector } from 'react-redux';
+import React, { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import { Navigate } from 'react-router-dom';
 
-import { games } from '../../data/games';
+// import { games } from '../../data/games';
 import { GameGrid } from './GameGrid';
 import { Navbar } from './Navbar';
 
 import '../../data/games';
 import './home.css';
-// import pacman from'../../assets/pacman-banner.jpg'
+import { startRenew } from '../../actions/auth';
 
 export const Home = () => {
 	const { uid } = useSelector((state) => state.auth);
+	const dispatch = useDispatch();
 	//   console.log("home" + uid);
-	const gamesFiltered = games.filter((game) => game.cover);
+	// const gamesFiltered = games.filter((game) => game.cover);
+	useEffect(() => {
+		dispatch(startRenew());
+	}, [dispatch]);
+
 	return uid ? (
 		<div className='full-container'>
 			<Navbar />
@@ -27,7 +32,9 @@ export const Home = () => {
 					<p></p>
 				</div>
 			</section>
-			<GameGrid games={gamesFiltered} />
+			<section>
+				<GameGrid />
+			</section>
 		</div>
 	) : (
 		<Navigate to='login' />

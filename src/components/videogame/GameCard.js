@@ -8,9 +8,9 @@ import { useNavigate } from 'react-router-dom';
 
 export const GameCard = ({id, name, cover, summary, genres}) => {
   const nav = useNavigate();
+  
   const handleGameClick = () => {
-    console.log(id);
-    nav(`game:${id}`);
+    nav(`/game/${id}`);
   }
   return (
     <Card className='game-card' sx={{ maxWidth: 345 }} onClick={handleGameClick}>
@@ -18,7 +18,7 @@ export const GameCard = ({id, name, cover, summary, genres}) => {
         <CardMedia
           component="img"
           height="140"
-          image={cover.url}
+          image={cover && cover.url}
           alt={name}
         />
         <CardContent>
@@ -26,10 +26,10 @@ export const GameCard = ({id, name, cover, summary, genres}) => {
             {name}
           </Typography>
           <Typography variant="body2" color="text.secondary">
-            { summary.substring(0,100) }...
+            { summary && summary.substring(0,100) }...
           </Typography>
           
-          { genres ? 
+          { genres.length>0 ? 
           <div className='mt-2 genres'>
               <small className='genres'> Genres: {genres.map(genre => ( `${genre.name} ` ))} </small>
           </div>

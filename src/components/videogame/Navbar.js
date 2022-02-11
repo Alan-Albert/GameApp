@@ -13,7 +13,7 @@ export const Navbar = () => {
     }
 
 	return (
-		<nav className='navbar navbar-expand-sm navbar-dark bg-dark'>
+		<nav className='navbar fixed-top navbar-expand-sm navbar-dark bg-dark'>
 			<Link className='navbar-brand' to='/'>
 				Home
 			</Link>
@@ -41,7 +41,7 @@ export const Navbar = () => {
 						className={({ isActive }) =>
 							'nav-item nav-link ' + (isActive ? 'active' : '')
 						}
-						to='/topRated'
+						to='/coming'
 					>
 						ComingSoon
 					</NavLink>

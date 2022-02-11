@@ -1,9 +1,10 @@
-// const baseUrl = process.env.REACT_APP_API_URL;
+const baseUrl = process.env.REACT_APP_API_URL;
+// console.log(baseUrl);
 
 const fetchSinToken = ( endpoint, data, method = 'GET' ) => {
 
-    const url = `http://localhost:4000/api/${ endpoint }`;
-    console.log(url);
+    const url = `${ baseUrl }/${ endpoint }`;
+    // console.log(url);
 
     if ( method === 'GET' ) {
         return fetch( url );
@@ -20,7 +21,7 @@ const fetchSinToken = ( endpoint, data, method = 'GET' ) => {
 
 const fetchConToken = ( endpoint, data, method = 'GET' ) => {
 
-    const url = `http://localhost:4000/api//${ endpoint }`;
+    const url = `${ baseUrl }/${ endpoint }`;
     const token = localStorage.getItem('token') || '';
 
     if ( method === 'GET' ) {

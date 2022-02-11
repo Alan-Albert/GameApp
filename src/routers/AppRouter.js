@@ -49,7 +49,7 @@ export const AppRouter = () => {
 				</Route>
 				<Route element={<PrivateRoute isLogged={isLogged} />}>
 					<Route path='/home' element={<Home />} />
-					<Route path='/game:id' element={<GameInfo />} />
+					<Route path='game/:id' element={<GameInfo />} />
 				</Route>
 				<Route path='*' element={<Home />} />
 			</Routes>

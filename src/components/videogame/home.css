@@ -1,5 +1,6 @@
 .full-container {
     font-family:'Franklin Gothic', 'Arial Narrow', Arial, sans-serif;
+    height: 100%;
     width: 100%;
 }
 
@@ -12,7 +13,6 @@
     background-image: url("../../assets/pacman-banner.jpg");
 	width: 100%;
 	height: 30rem;
-    /* max-height: 500px; */
 }
 
 .text-banner {
@@ -23,20 +23,18 @@
     align-content: center;
     justify-content: center;
     color: #92C9B1;
-    /* position: absolute;
-    margin-top: -15rem;
-    margin-left: 5rem; */
 }
 
 .game-container{
     padding: 50px;
     background-color: white;
     width: 100%;
-    height: 92vh;
+    height: 100%;
 }
 
 .text-profile {
     color: #92C9B1 !important;
+    cursor: pointer;
 }
 
 .navbar-brand {
@@ -44,10 +42,14 @@
 }
 
 .card-container {
-	display: grid;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+	/* display: grid;
 	grid-template-columns: repeat(5, 2fr);
 	grid-gap: 10px;
-	grid-auto-rows: minmax(200px, auto);
+	grid-auto-rows: minmax(200px, auto); */
 }
 
 .game-card {
@@ -59,19 +61,8 @@
     font-style: italic;
 }
 
-/* .banner {
-	width: 100%;
-	min-width: 230px;
-	max-width: 2000px;
-	position: relative;
-	height: auto;
-	min-height: 300px;
-	max-height: 500px;
-	overflow: hidden;
-} */
 
 img {
-    /* max-width : 1300px; */
     max-height: 800px;
 	width: 100%;
 	position: relative;
